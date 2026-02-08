@@ -100,7 +100,6 @@ El análisis está estructurado en **múltiples fases metodológicas** que van d
 1. **S&P 500 coloreado por régimen** (obligatoria): Blanco = Calma, Azul = Crisis
 2. Timeline de regímenes con fechas clave marcadas
 3. Distribución de duraciones de episodios por régimen
-4. Probabilidades suavizadas P(Crisis|datos) en el tiempo
 
 ---
 
