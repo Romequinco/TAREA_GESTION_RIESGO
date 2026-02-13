@@ -236,7 +236,7 @@
     <h2>FASE 1 - DETECCIÓN DE REGÍMENES</h2>
     <h3>Identificación de Estados de Mercado mediante HMM</h3>
     <p style="font-size: 9pt; margin: 2px 0;">
-        Modelo Hidden Markov de 2 estados (Calma/Crisis) entrenado sobre retornos multivariantes de indicadores clave (S&P 500, VIX, TLT, IEF, HYG). El modelo identifica cambios de régimen basándose en patrones de volatilidad y co-movimientos. Estados detectados: Calma (74.7% días, duración media 53.4 días) y Crisis (25.3% días, duración media 18.4 días). El modelo identifica correctamente períodos históricos: Lehman Brothers (2008), COVID-19 (2020), e Inflación (2022).
+        Modelo Hidden Markov de 2 estados (Calma/Crisis) entrenado sobre features transformadas de indicadores clave: retornos estandarizados (S&P 500, TLT, IEF, HYG), volatilidad móvil del S&P 500 (20 días), spread de crédito (HYG-IEF), y nivel del VIX. El modelo identifica cambios de régimen basándose en patrones de volatilidad y co-movimientos. Estados detectados: Calma (74.7% días, duración media 53.4 días) y Crisis (25.3% días, duración media 18.4 días). El modelo identifica correctamente períodos históricos principales: Lehman Brothers (2008), COVID-19 (2020), e Inflación (2022), así como otras crisis menos conocidas y de menor duración como el Taper Tantrum (2013) y episodios de volatilidad en 2011 y 2018.
     </p>
     
     <div class="chart-container chart-container-small">
@@ -247,7 +247,7 @@
     <h2>FASE 2 - ANÁLISIS MARGINAL</h2>
     <h3>Cambios en Distribuciones por Régimen</h3>
     <p style="font-size: 9pt; margin: 2px 0;">
-        La volatilidad de HYG aumenta de 5.02% en Estado Calma a 20.03% en Estado Crisis (incremento de 15.01 puntos porcentuales, factor 4.0×). GLD muestra comportamiento de activo refugio parcial con volatilidad de 15.38% en Calma vs 23.69% en Crisis (ratio 1.54×), confirmando estabilidad relativa aunque no protección absoluta.
+        La volatilidad de HYG aumenta de 5.02% en Estado Calma a 20.03% en Estado Crisis (incremento de 15.01 puntos porcentuales, factor 4.0×). Este incremento desproporcionado refleja el deterioro del crédito corporativo en períodos de estrés, donde los inversores exigen mayores primas de riesgo y la liquidez se reduce significativamente. GLD muestra comportamiento de activo refugio parcial con volatilidad de 15.38% en Calma vs 23.69% en Crisis (ratio 1.54×), confirmando estabilidad relativa aunque no protección absoluta. El oro mantiene correlaciones bajas con otros activos en crisis (promedio 0.034), reduciendo correlación con 6 activos respecto al estado de calma, lo que valida su rol como diversificador en carteras bajo estrés.
     </p>
     
     <table style="font-size: 8pt;">
@@ -394,7 +394,6 @@
                 <th>Métrica</th>
                 <th>Real</th>
                 <th>Simulado</th>
-                <th>Error Relativo</th>
             </tr>
         </thead>
         <tbody>
@@ -402,49 +401,41 @@
                 <td>% días en Calma</td>
                 <td>74.69%</td>
                 <td>77.20%</td>
-                <td>3.4%</td>
             </tr>
             <tr>
                 <td>% días en Crisis</td>
                 <td>25.31%</td>
                 <td>22.80%</td>
-                <td>9.9%</td>
             </tr>
             <tr>
                 <td>Duración media Calma (días)</td>
                 <td>53.4</td>
                 <td>35.6</td>
-                <td>33.3%</td>
             </tr>
             <tr>
                 <td>Duración media Crisis (días)</td>
                 <td>18.4</td>
                 <td>14.6</td>
-                <td>20.7%</td>
             </tr>
             <tr>
                 <td>Volatilidad anualizada</td>
                 <td>28.47%</td>
                 <td>35.26%</td>
-                <td>23.8%</td>
             </tr>
             <tr>
                 <td>Max Drawdown</td>
                 <td>-49.29%</td>
                 <td>-22.47%</td>
-                <td>54.4%</td>
             </tr>
             <tr>
                 <td>VaR 99%</td>
                 <td>-0.0587</td>
                 <td>-0.0550</td>
-                <td style="color: #28a745;">6.3%</td>
             </tr>
             <tr>
                 <td>CVaR 99%</td>
                 <td>-0.0883</td>
                 <td>-0.0685</td>
-                <td>22.4%</td>
             </tr>
         </tbody>
     </table>
@@ -465,7 +456,7 @@
     <h2>FASE 5 - ESCENARIOS DE ESTRÉS</h2>
     <h3>Cuantificación de Riesgos Extremos</h3>
     <p style="font-size: 9pt; margin: 2px 0;">
-        Tres escenarios diseñados para "romper" la cartera bajo condiciones adversas coherentes económicamente. Horizonte: 6 meses. Cada escenario ejecuta 10.000 simulaciones Monte Carlo.
+        Tres escenarios diseñados para "romper" la cartera bajo condiciones adversas coherentes económicamente. Horizonte: 6 meses. Cada escenario ejecuta 10.000 simulaciones Monte Carlo. El escenario de Pérdida de Confianza Crediticia de EE.UU. fue seleccionado como escenario alternativo debido a las recientes noticias: EE.UU. perdió su calificación AAA en mayo de 2025 y actualmente se encuentra en Aa1/AA+ debido al aumento del déficit y deuda pública. Este escenario simula una pérdida adicional de confianza crediticia moderada (downgrade adicional hacia Aa2/AA), evaluando el impacto de que incluso activos tradicionalmente considerados refugio (bonos gobierno USA) pierdan valor adicional.
     </p>
     
     <table style="font-size: 8pt;">
