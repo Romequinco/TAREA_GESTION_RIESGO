@@ -7,15 +7,16 @@
     <style>
         @media print {
             body { margin: 0; }
-            .page-break { page-break-after: always; }
-            .page:last-child { page-break-after: auto; }
-            .page:last-of-type { page-break-after: auto !important; }
+            .page-break { display: none; }
+            .page {
+                page-break-after: always;
+            }
+            .page:last-of-type {
+                page-break-after: auto;
+            }
             @page {
                 margin: 0;
                 size: A4;
-            }
-            @page :blank {
-                @top-center { content: none; }
             }
         }
         body {
@@ -32,14 +33,12 @@
             min-height: 297mm;
             padding: 8mm;
             margin: 0 auto;
+            margin-bottom: 0;
             background: white;
             box-sizing: border-box;
         }
-        .page:not(:last-of-type) {
-            page-break-after: always;
-        }
-        .page:last-of-type {
-            page-break-after: auto;
+        .page-break {
+            display: none;
         }
         
         .header {
@@ -329,7 +328,6 @@
         Informe Ejecutivo - Stress Testing Multi-Régimen | Página 1 de 3 | CONFIDENCIAL
     </div>
 </div>
-<div class="page-break"></div>
 <!-- PÁGINA 2 -->
 <div class="page">
     <div class="header">
@@ -482,7 +480,6 @@
         Informe Ejecutivo - Stress Testing Multi-Régimen | Página 2 de 3 | CONFIDENCIAL
     </div>
 </div>
-<div class="page-break"></div>
 <!-- PÁGINA 3 -->
 <div class="page">
     <div class="header">
